@@ -15,10 +15,10 @@ mkdir -p /etc/redis/redis-slave/data
 ```
 
 ### Copy config
-*Copy redis-master.conf in /etc/redis/redis-master to /etc/redis/redis-master
-*Copy redis-slave.conf in /etc/redis/redis-slave to /etc/redis/redis-slave
-*Copy redis-master /etc/init.d to /etc/init.d
-*Copy redis-slave /etc/init.d to /etc/init.d
+* Copy redis-master.conf in /etc/redis/redis-master to /etc/redis/redis-master
+* Copy redis-slave.conf in /etc/redis/redis-slave to /etc/redis/redis-slave
+* Copy redis-master /etc/init.d to /etc/init.d
+* Copy redis-slave /etc/init.d to /etc/init.d
 
 ### Enable redis-master,redis-slave service
 ```
