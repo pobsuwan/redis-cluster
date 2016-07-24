@@ -46,7 +46,7 @@ Result
 ### Create redis cluster for redis master
 ```
 [node 1]
-redis-trib.rb create 10.255.1.87:6379 10.255.1.88:6379 10.255.1.89:6379
+redis-trib.rb create 192.168.10.143:6379 192.168.10.147:6379 192.168.10.148:6379
 Result
 >>> Creating cluster
 >>> Performing hash slots allocation on 3 nodes...
