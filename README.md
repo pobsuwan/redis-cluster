@@ -129,7 +129,7 @@ dcae654ae883d11bf89427d6853371bed95224ab 192.168.10.147:6380 master - 0 14690029
 ```
 
 ### Set redis-slave for replicate master
-++redis-cli -p 6380 CLUSTER REPLICATE (specified node id is a master)++
+**redis-cli -p 6380 CLUSTER REPLICATE (specified node id is a master)**
 ```
 [node 1]
 redis-cli -p 6380 CLUSTER REPLICATE 9ac2d6bbecdc8e2a93dfb016447c1ec0afd79e85
