@@ -32,14 +32,16 @@ chkconfig redis-master on
 chkconfig redis-slave on
 ```
 
-### Start redis-master [all nodes]
+### Start redis-master **[all nodes]**
 ```
 service redis-master start
 ```
-#### Verify redis-master is running [all nodes]
+#### Verify redis-master is running **[all nodes]**
 ```
 redis-cli cluster nodes
-Result
+```
+###### Result
+```
 9ac2d6bbecdc8e2a93dfb016447c1ec0afd79e85 :6379 myself,master - 0 0 0 connected
 ```
 
@@ -47,7 +49,10 @@ Result
 ```
 [node 1]
 redis-trib.rb create 192.168.10.143:6379 192.168.10.147:6379 192.168.10.148:6379
-Result
+```
+
+###### Result
+```
 >>> Creating cluster
 >>> Performing hash slots allocation on 3 nodes...
 Using 3 masters:
@@ -78,23 +83,27 @@ M: f19d87e82bdba43941e4d6b95f1465537c46c120 192.168.10.148:6379
 [OK] All 16384 slots covered.
 ```
 
-#### Verify redis cluster [all nodes]
+#### Verify redis cluster **[all nodes]**
 ```
 redis-cli cluster nodes
-Result
+```
+###### Result
+```
 f19d87e82bdba43941e4d6b95f1465537c46c120 192.168.10.148:6379 master - 0 1469002082805 3 connected 0-5460
 9ac2d6bbecdc8e2a93dfb016447c1ec0afd79e85 192.168.10.143:6379 myself,master - 0 0 1 connected 10923-16383
 75c61d39cfaf09a094599c413d38c26147179681 192.168.10.147:6379 master - 0 1469002084811 2 connected 5461-10922
 ```
 
-### Start redis-slave [all nodes]
+### Start redis-slave **[all nodes]**
 ```
 service redis-slave start
 ```
-#### Verify redis-slave is running [all nodes]
+#### Verify redis-slave is running **[all nodes]**
 ```
 redis-cli -p 6380 cluster nodes
-Result
+```
+###### Result
+```
 cce10c807af643a522e6aeccb309b164b556a835 :6380 myself,master - 0 0 0 connected
 ```
 ### Add slave node to cluster
@@ -105,10 +114,12 @@ redis-cli CLUSTER MEET 192.168.10.147 6380
 redis-cli CLUSTER MEET 192.168.10.148 6380
 Result = OK
 ```
-#### Verify redis cluster [all nodes]
+#### Verify redis cluster **[all nodes]**
 ```
 redis-cli cluster nodes
-Result
+```
+###### Result
+```
 f19d87e82bdba43941e4d6b95f1465537c46c120 192.168.10.148:6379 master - 0 1469002991329 3 connected 0-5460
 a26cb609d42adf75536f9a9f0f52604f3461bb96 192.168.10.148:6380 master - 0 1469002991830 5 connected
 cce10c807af643a522e6aeccb309b164b556a835 192.168.10.143:6380 master - 0 1469002991329 4 connected
@@ -118,7 +129,7 @@ dcae654ae883d11bf89427d6853371bed95224ab 192.168.10.147:6380 master - 0 14690029
 ```
 
 ### Set redis-slave for replicate master
-redis-cli -p 6380 CLUSTER REPLICATE (specified node ID is a master)
+++redis-cli -p 6380 CLUSTER REPLICATE (specified node id is a master)++
 ```
 [node 1]
 redis-cli -p 6380 CLUSTER REPLICATE 9ac2d6bbecdc8e2a93dfb016447c1ec0afd79e85
@@ -130,10 +141,12 @@ Result = OK
 redis-cli -p 6380 CLUSTER REPLICATE f19d87e82bdba43941e4d6b95f1465537c46c120
 Result = OK
 ```
-#### Verify redis cluster [all nodes]
+#### Verify redis cluster **[all nodes]**
 ```
 redis-cli cluster nodes
-Result
+```
+###### Result
+```
 f19d87e82bdba43941e4d6b95f1465537c46c120 192.168.10.148:6379 master - 0 1469003290464 3 connected 0-5460
 a26cb609d42adf75536f9a9f0f52604f3461bb96 192.168.10.148:6380 slave f19d87e82bdba43941e4d6b95f1465537c46c120 0 1469003291466 5 connected
 cce10c807af643a522e6aeccb309b164b556a835 192.168.10.143:6380 slave 9ac2d6bbecdc8e2a93dfb016447c1ec0afd79e85 0 1469003289962 4 connected
