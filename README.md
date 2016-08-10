@@ -1,4 +1,4 @@
-# How to config redis-cluster for SoftnixLogger [3 nodes && 3 replicate]
+# How to config redis-cluster for SoftnixLogger [3 nodes]
 
 ## Do after install SLGInstallers
 
